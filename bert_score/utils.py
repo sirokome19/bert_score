@@ -112,10 +112,10 @@ def sent_encode(tokenizer, sent):
             )
         elif LooseVersion(trans_version) >= LooseVersion("3.0.0"):
             return tokenizer.encode(
-                sent, add_special_tokens=True, add_prefix_space=True, max_length=tokenizer.max_len, truncation=True
+                sent, add_special_tokens=True, add_prefix_space=True, max_length=tokenizer.model_max_length, truncation=True
             )
         elif LooseVersion(trans_version) >= LooseVersion("2.0.0"):
-            return tokenizer.encode(sent, add_special_tokens=True, add_prefix_space=True, max_length=tokenizer.max_len)
+            return tokenizer.encode(sent, add_special_tokens=True, add_prefix_space=True, max_length=tokenizer.model_max_length)
         else:
             raise NotImplementedError(f"transformers version {trans_version} is not supported")
     else:
@@ -123,9 +123,9 @@ def sent_encode(tokenizer, sent):
             return tokenizer.encode(sent, add_special_tokens=True, max_length=tokenizer.model_max_length,
                                     truncation=True)
         elif LooseVersion(trans_version) >= LooseVersion("3.0.0"):
-            return tokenizer.encode(sent, add_special_tokens=True, max_length=tokenizer.max_len, truncation=True)
+            return tokenizer.encode(sent, add_special_tokens=True, max_length=tokenizer.model_max_length, truncation=True)
         elif LooseVersion(trans_version) >= LooseVersion("2.0.0"):
-            return tokenizer.encode(sent, add_special_tokens=True, max_length=tokenizer.max_len)
+            return tokenizer.encode(sent, add_special_tokens=True, max_length=tokenizer.model_max_length)
         else:
             raise NotImplementedError(f"transformers version {trans_version} is not supported")
 
